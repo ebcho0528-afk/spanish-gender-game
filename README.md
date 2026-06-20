@@ -1,4 +1,3 @@
-Markdown
 # 스페인어 관사 짝맞추기 게임 (Juego de Artículos en Español)
 
 
