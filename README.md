@@ -1,11 +1,10 @@
 Markdown
-# 🇪🇸 스페인어 관사 짝맞추기 게임 (Juego de Artículos en Español)
+# 스페인어 관사 짝맞추기 게임 (Juego de Artículos en Español)
 
-**[(https://github.com/ebcho0528-afk/spanish-gender-game)]**
 
 스페인어 학습자를 위한 인터랙티브 웹 기반 단어 학습 게임입니다. 헷갈리기 쉬운 스페인어 명사의 성별(남성/여성)과 그에 맞는 정관사(el, la)를 직관적으로 짝맞추며 재미있게 암기할 수 있도록 설계되었습니다. 
 
-본 프로젝트는 2026년 1학기 기말 과제로, AI를 활용한 **바이브 코딩(Vibe Coding)** 방식을 통해 기획 및 개발되었습니다.
+본 프로젝트는 2026년 SW프로그래밍의기초(SW PROGRAMMING BASICS)-07분반의 1학기 기말 과제로, AI를 활용한 **바이브 코딩(Vibe Coding)** 방식을 통해 기획 및 개발되었습니다.
 
 ---
 
@@ -49,4 +48,4 @@ Markdown
 3. 화면 왼쪽에서 해당 단어에 맞는 관사를 클릭합니다.
 
 ---
-*Developed by [이경서/2026131543]*
+*Developed by 이경서/2026131543*
