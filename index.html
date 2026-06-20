@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스페인어 관사 맞추기 게임 | Aprende el Género</title>
+  <!-- Google Fonts: 둥글고 부드러운 느낌을 위한 Outfit 및 Fredoka 폰트 적용 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <!-- 외부 스타일시트 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <!-- 헤더 영역: 게임 제목 및 진행 상태 바 -->
+    <header class="game-header">
+      <h1 class="game-title">Aprende el Género 🇪🇸</h1>
+      <p class="game-subtitle">단어를 선택하고 알맞은 관사를 누르세요!</p>
+      
+      <div class="progress-container">
+        <div class="progress-info">
+          <span class="progress-label">진행 상황</span>
+          <span id="progress-text">0 / 10 맞춤</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 메인 게임 영역 -->
+    <main class="game-main">
+      <!-- 왼쪽 영역: 관사 버튼 리스트 (세로 정렬) -->
+      <section class="article-section" aria-label="관사 선택">
+        <div class="article-buttons">
+          <button class="btn-article" data-article="el">
+            <span class="article-text">el</span>
+            <span class="article-desc">남성 단수</span>
+          </button>
+          <button class="btn-article" data-article="la">
+            <span class="article-text">la</span>
+            <span class="article-desc">여성 단수</span>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- 오른쪽 영역: 단어 카드 그리드 -->
+      <section class="word-section" aria-label="단어 카드 목록">
+        <div id="word-grid" class="word-grid">
+          <!-- 자바스크립트를 통해 단어 카드들이 동적으로 생성됩니다 -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 축하 팝업 모달창 (숨김 상태 기본) -->
+  <div id="success-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-icon">🎉</div>
+      <h2 class="modal-title">¡Excelente!</h2>
+      <p class="modal-message">모든 스페인어 단어의 성별을 완벽하게 맞추셨습니다!</p>
+      <button id="btn-restart" class="btn-restart">다시 하기</button>
+    </div>
+  </div>
+
+  <!-- 안내 메시지용 토스트 (숨김 상태 기본) -->
+  <div id="toast" class="toast hidden">단어 카드를 먼저 선택해 주세요!</div>
+
+  <!-- 외부 자바스크립트 연결 -->
+  <script src="script.js"></script>
+</body>
+</html>

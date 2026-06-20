@@ -1,0 +1,508 @@
+/* -------------------------------------------------------------
+ * 1. CSS Variables & Design System Tokens (Cool Pastel Theme)
+ * ------------------------------------------------------------- */
+:root {
+  /* Fonts */
+  --font-family-title: 'Fredoka', 'Outfit', system-ui, sans-serif;
+  --font-family-body: 'Outfit', system-ui, sans-serif;
+
+  /* Colors */
+  --color-bg-gradient-start: #f3f0f7; /* Very soft lavender white */
+  --color-bg-gradient-end: #e8f0fe;   /* Very soft baby blue white */
+  
+  --color-text-dark: #373b4e;
+  --color-text-light: #6e738a;
+  
+  /* Primary buttons & interactive (Lavender) */
+  --color-lavender-light: #ede7f6;
+  --color-lavender-medium: #d1c4e9;
+  --color-lavender-dark: #7e57c2;
+  
+  /* Baby blue colors for layout & secondary cards */
+  --color-blue-light: #e3f2fd;
+  --color-blue-medium: #bbdefb;
+  --color-blue-dark: #42a5f5;
+
+  /* Accent Mint Green (for correct states) */
+  --color-correct-bg: #e8f5e9;
+  --color-correct-glow: #a5d6a7;
+  --color-correct-dark: #2e7d32;
+
+  /* Soft Coral Red (for incorrect states) */
+  --color-incorrect-bg: #ffebee;
+  --color-incorrect-glow: #ef9a9a;
+  --color-incorrect-dark: #c62828;
+
+  /* Card and container borders */
+  --border-radius-lg: 24px;
+  --border-radius-md: 16px;
+  --border-radius-sm: 12px;
+
+  /* Shadow effects */
+  --shadow-soft: 0 8px 24px rgba(126, 87, 194, 0.08);
+  --shadow-hover: 0 12px 30px rgba(126, 87, 194, 0.15);
+  --shadow-press: 0 4px 10px rgba(126, 87, 194, 0.06);
+  --shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+  --transition-normal: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* -------------------------------------------------------------
+ * 2. Reset & Global Styles
+ * ------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 100%);
+  color: var(--color-text-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* Main wrapper with mobile device maximum width for casual game look */
+.game-container {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--border-radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* -------------------------------------------------------------
+ * 3. Header & Progress Bar
+ * ------------------------------------------------------------- */
+.game-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.game-title {
+  font-family: var(--font-family-title);
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--color-lavender-dark), var(--color-blue-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.game-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+/* Progress bar styling */
+.progress-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 16px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-lavender-dark);
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 12px;
+  background-color: rgba(209, 196, 233, 0.3); /* Light lavender */
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-lavender-medium) 0%, var(--color-lavender-dark) 100%);
+  border-radius: var(--border-radius-sm);
+  width: 0%;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(126, 87, 194, 0.3);
+}
+
+/* -------------------------------------------------------------
+ * 4. Layout: Grid and Sidebar
+ * ------------------------------------------------------------- */
+.game-main {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Sidebar Articles list */
+.article-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 20px;
+}
+
+.btn-article {
+  background: white;
+  border: 3px solid var(--color-lavender-medium);
+  border-radius: var(--border-radius-md);
+  padding: 16px 8px;
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font-family-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: var(--shadow-press);
+  transition: var(--transition-normal);
+}
+
+.btn-article:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-lavender-dark);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-article:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-press);
+}
+
+.btn-article .article-text {
+  font-family: var(--font-family-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-lavender-dark);
+}
+
+.btn-article .article-desc {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+/* Word Cards Grid */
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+  min-height: 250px;
+}
+
+/* -------------------------------------------------------------
+ * 5. Word Card Styling & States
+ * ------------------------------------------------------------- */
+.word-card {
+  background: white;
+  border: 3px solid var(--color-blue-medium);
+  border-radius: var(--border-radius-md);
+  padding: 20px 10px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+.word-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-blue-dark);
+  box-shadow: var(--shadow-hover);
+}
+
+.word-card:active {
+  transform: scale(0.96);
+}
+
+.word-card .word-sp {
+  font-family: var(--font-family-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  word-break: break-word;
+}
+
+.word-card .word-ko {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+/* State: Selected (Highlight) */
+.word-card.selected {
+  border-color: var(--color-lavender-dark);
+  background-color: var(--color-lavender-light);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 0 15px rgba(126, 87, 194, 0.25);
+  z-index: 2;
+}
+
+.word-card.selected .word-sp {
+  color: var(--color-lavender-dark);
+}
+
+/* State: Correct Match Animation */
+.word-card.correct {
+  pointer-events: none;
+  animation: successPulse 0.5s ease-out forwards;
+}
+
+/* State: Incorrect Match Animation */
+.word-card.incorrect {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* -------------------------------------------------------------
+ * 6. Animations (Keyframes)
+ * ------------------------------------------------------------- */
+
+/* Correct Feedback: Soft Pulse with green glow, then fades out */
+@keyframes successPulse {
+  0% {
+    background-color: white;
+    border-color: var(--color-blue-medium);
+    transform: scale(1);
+  }
+  30% {
+    background-color: var(--color-correct-bg);
+    border-color: var(--color-correct-glow);
+    color: var(--color-correct-dark);
+    box-shadow: 0 0 25px rgba(74, 175, 80, 0.4);
+    transform: scale(1.1);
+  }
+  100% {
+    background-color: var(--color-correct-bg);
+    border-color: var(--color-correct-glow);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Incorrect Feedback: Horizontal Shake and Red Glow */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+    border-color: var(--color-blue-medium);
+    background-color: white;
+  }
+  15%, 45%, 75% {
+    transform: translateX(-10px);
+    border-color: var(--color-incorrect-glow);
+    background-color: var(--color-incorrect-bg);
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.2);
+  }
+  30%, 60%, 90% {
+    transform: translateX(10px);
+    border-color: var(--color-incorrect-glow);
+    background-color: var(--color-incorrect-bg);
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.2);
+  }
+}
+
+/* -------------------------------------------------------------
+ * 7. Success Modal & Overlay
+ * ------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(110, 115, 138, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: var(--shadow-modal);
+  transform: scale(1);
+  animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes modalPop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  display: inline-block;
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.modal-title {
+  font-family: var(--font-family-title);
+  font-size: 2.2rem;
+  color: var(--color-lavender-dark);
+  margin-bottom: 12px;
+}
+
+.modal-message {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+.btn-restart {
+  background: linear-gradient(135deg, var(--color-lavender-dark) 0%, #673ab7 100%);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: 14px 32px;
+  font-family: var(--font-family-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(126, 87, 194, 0.4);
+  transition: var(--transition-normal);
+  width: 100%;
+}
+
+.btn-restart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(126, 87, 194, 0.6);
+}
+
+.btn-restart:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px rgba(126, 87, 194, 0.3);
+}
+
+/* -------------------------------------------------------------
+ * 8. Toast Alert Style
+ * ------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: var(--color-text-dark);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-modal);
+  z-index: 200;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 1;
+}
+
+/* Utility visibility classes */
+.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+ * 9. Responsive Adjustments
+ * ------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .game-container {
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .game-main {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .article-buttons {
+    flex-direction: row;
+    position: static;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .btn-article {
+    flex: 1;
+    padding: 10px 4px;
+    min-width: 0;
+  }
+
+  .btn-article .article-text {
+    font-size: 1.4rem;
+  }
+
+  .btn-article .article-desc {
+    font-size: 0.65rem;
+  }
+
+  .word-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+
+  .word-card {
+    padding: 15px 5px;
+  }
+
+  .word-card .word-sp {
+    font-size: 1.05rem;
+  }
+
+  .word-card .word-ko {
+    font-size: 0.72rem;
+  }
+}
